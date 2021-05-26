@@ -10,7 +10,7 @@ website_url =  'https://www.immoweb.be/en/search/house-and-apartment/for-sale?co
 driver.get(website_url)
 
 html = driver.page_source
-soup = BeautifulSoup(html)
+soup = BeautifulSoup(html, features = "html.parser")
 
 import webbrowser
 import re
@@ -27,7 +27,7 @@ for page_number in range(1, total_pages + 1):  # creating a loop that will repla
     driver.get(new_url)
 
     html = driver.page_source
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(html, features= "html.parser")
 
     # finding each listed houses' information to scrap further the property type (house,apartment,mansion, etc.)
     house_containers = soup.find_all('li', attrs={"class": "search-results__item"})
@@ -45,7 +45,7 @@ for page_number in range(1, total_pages + 1):  # creating a loop that will repla
             # create a BeautifulSoup from each of property links
             driver.get(property_link)
             html_of_each_property = driver.page_source
-            soup_of_each_property = BeautifulSoup(html_of_each_property)
+            soup_of_each_property = BeautifulSoup(html_of_each_property, features= "html.parser")
 
             locality = soup_of_each_property.select(".classified__information--address-row")[1].text
             locality = ''.join(filter(str.isdigit, locality))  # only output will be the postal code digit.

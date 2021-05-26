@@ -47,13 +47,33 @@ for page_number in range(1, total_pages + 1):  # creating a loop that will repla
             html_of_each_property = driver.page_source
             soup_of_each_property = BeautifulSoup(html_of_each_property, features= "html.parser")
 
-            locality = soup_of_each_property.select(".classified__information--address-row")[1].text
-            locality = ''.join(filter(str.isdigit, locality))  # only output will be the postal code digit.
+            locality = soup_of_each_property.select(".classified__information--address-row")[1].text.replace(" ","")[:5]
             print(locality)
 
             # sub_type_of_property = I might skip this because it is already stated in the property_type if its a house,mansion,villa etc.
 
             price = soup_of_each_property.find_all("p", attrs={"class": "classified__price"})[0].text.split(" ")[0]
             print(price)
+
+            number_of_rooms = soup_of_each_property.find_all('span', attrs={"class": "overview__text"})[0].text.replace(" ", "")[1]
+            print(number_of_rooms)
+
+            area = soup_of_each_property.find_all('span', attrs= {"class" : "overview__text"})[2].text.replace(" ","").replace("\n","")
+            area = ''.join(filter(str.isdigit, area))[:-1] #to retrieve only the digit part without the square(²) sign.
+            print(area)
+
+            kitchen_type = soup_of_each_property.select(".classified-table__row .classified-table__data")[11].text.strip()
+            print(kitchen_type)
+
+            furnished = soup_of_each_property.select(".classified-table__row .classified-table__data")[26].text.strip()
+            if furnished == "No":   #if the house is not finished, the return will be 0. Else 1.
+                furnished = 0
+            else:
+                furnished = 1
+            print(furnished)
+
+
+
+
 
 

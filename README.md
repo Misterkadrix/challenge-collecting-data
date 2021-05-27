@@ -18,8 +18,8 @@ Studio Code.
 
 
 <h2>Contributors</h2>
-Ceren Morey    
-Kadri Salija    
-Pauwel De Wilde   
+Ceren Morey<br />
+Kadri Salija<br />
+Pauwel De Wilde
 
 (Juniors at BeCode)

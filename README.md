@@ -1,9 +1,22 @@
 # challenge-collecting-data
 Type of Challenge: Consolidation
 
-<h2>Introduction</h2>
-If the website of immoweb is not selective enough, you should check this programme. 
-It simply highlights the features you want to know about a property, without any
-residual information. 
+<h2>Description</h2>
+This program is a tool that retrieves clean infromation about properties on the website Immoweb.
+It runs through all the pages of houses and appartments in all of Belgium and returns a fixed 
+table of values. If the information has not been entered on the website, you also get an indication
+of that.
 
-<h2>About the output</h2>
+<h2>Installation</h2>
+
+
+<h2>Usage</h2>
+
+
+<h2>Visuals</h2>
+
+
+<h2>Contributors</h2>
+
+
+<h2>Timeline</h2>

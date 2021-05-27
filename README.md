@@ -21,5 +21,7 @@ of that.
 Ceren Morey
 
 Kadri Salija
+
 Pauwel De Wilde
+
 (Juniors at BeCode)

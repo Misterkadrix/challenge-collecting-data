@@ -18,7 +18,7 @@ Studio Code.
 
 
 <h2>Contributors</h2>
-Ceren Morey<br />
+Ceren Morey\
 Kadri Salija<br />
 Pauwel De Wilde<br />
 <br />

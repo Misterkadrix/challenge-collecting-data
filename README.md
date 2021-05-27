@@ -17,10 +17,8 @@ of that.
 
 
 <h2>Contributors</h2>
+
 Ceren Morey
-
 Kadri Salija
-
 Pauwel De Wilde
-
 (Juniors at BeCode)

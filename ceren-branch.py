@@ -36,8 +36,8 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
                                       'Furnished', 'How many fireplaces?', 'Garden surface', 'Terrace surface',
                                       'Surface of the plot', 'Number of frontages', 'Swimming pool',
                                       'Building condition']
-    # initiate dataframe
-    #data_frame = pd.DataFrame()  # then the columns needs to be added from the list_of_attributes
+
+    data_frame = pd.DataFrame(columns=list_of_attributes_to_retrieve)  # then the values will be added from the final dictionary.
 
     # the loop that will go through each listed house and do the scrapping.
     for card in house_containers[:3]:
@@ -123,7 +123,19 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
                     if el in list_of_attributes_to_retrieve:
                         final_dict[el] = dict_of_attributes[el]
 
-                print(final_dict)
+                # appending the final dictionary values to the data frame as rows.
+                data_frame = data_frame.append(final_dict, ignore_index=True)
+
+# rename the column names to make them easier/cleaner to read.
+data_frame.rename({'property_type': 'Property Type', 'location': 'Location', 'price': 'Price', 'number_of_rooms': 'Number of Rooms',
+     'area': 'Area'}, axis=1, inplace=True)
+
+# change yes/no answers to binary values as requested for the project.
+data_frame['Swimming pool'] = data_frame['Swimming pool'].replace(['No'], '0')  # if it's no assign 0.
+data_frame['Furnished'] = data_frame['Furnished'].replace(['No'], '0')
+data_frame['Furnished'] = data_frame['Furnished'].replace(['Yes'], '1')  # if its furnished 1.
+
+data_frame
 
 
 

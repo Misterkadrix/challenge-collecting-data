@@ -14,8 +14,8 @@ directly in your Terminal/Shell, by navigating to the right folder and entering 
 
 <h2>Usage</h2>
 The program wil scrape the Immoweb website, collect the data and put them in a dataframe (supported by 
-Pandas). The first 10.000 results will be analysed. After that, the dataframe is automatically converted 
-to a .csv file, which you can open with Excel or any similar program.
+Pandas). The first 10.000 results will be analysed, which will take some minutes. After that, the dataframe 
+is automatically converted to a .csv file, which you can open with Excel or any similar program.
 
 <h2>Visuals</h2>
 

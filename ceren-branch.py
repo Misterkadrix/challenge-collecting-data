@@ -57,6 +57,9 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
                 locality = card.find_all('p', attrs={"class": "card__information card--results__information--locality card__information--locality"})[0].text.strip()[:5]
                 dict_of_attributes['location'] = locality
 
+                price = card.find_all("p" , attrs = {"class": "card--result__price"})[0].text.strip().replace('€','')
+                dict_of_attributes['price'] = price
+
                 # retrieve the links of each property so the beautifulsoup can be created
                 property_link = card.find('a', attrs={"class": "card__title-link"}).get('href')
 
@@ -67,9 +70,6 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
 
                 # for each property, location, price, number of rooms, and area information are stated at the top of the website and it is the same pattern always.
                 # Therefore they can be detected within their class and indexes.
-
-                price = soup_of_each_property.find_all("p", attrs={"class": "classified__price"})[0].text.split(" ")[0].replace('€', '')
-                dict_of_attributes['price'] = price
 
                 number_of_rooms = soup_of_each_property.find_all('span', attrs={"class": "overview__text"})[0].text.replace(" ", "")[1]
                 dict_of_attributes['number_of_rooms'] = number_of_rooms

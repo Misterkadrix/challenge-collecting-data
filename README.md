@@ -17,6 +17,7 @@ of that.
 
 
 <h2>Contributors</h2>
-
-
-<h2>Timeline</h2>
+Ceren Morey
+Kadri Salija
+Pauwel De Wilde
+(Juniors at BeCode)

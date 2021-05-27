@@ -1,4 +1,4 @@
-# challenge-collecting-data
+# Collecting data
 Type of Challenge: Consolidation
 
 <h2>Description</h2>

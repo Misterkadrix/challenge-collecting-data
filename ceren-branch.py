@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 driver = webdriver.Safari()
-website_url =  'https://www.immoweb.be/en/search/house-and-apartment/for-sale?countries=BE&isALifeAnnuitySale=false&page=1&orderBy=relevance'
+website_url = 'https://www.immoweb.be/en/search/house-and-apartment/for-sale?countries=BE&isALifeAnnuitySale=false&page=1&orderBy=relevance'
 driver.get(website_url)
 
 html = driver.page_source
@@ -40,7 +40,7 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
     data_frame = pd.DataFrame(columns=list_of_attributes_to_retrieve)  # then the values will be added from the final dictionary.
 
     # the loop that will go through each listed house and do the scrapping.
-    for card in house_containers[:3]:
+    for card in house_containers[:15]:
         if len(card.select('.card--result')) == 1:  # skips the advertisement.
 
             # dictionary that will store the scrapped information.
@@ -65,24 +65,17 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
 
                 # for each property, location, price, number of rooms, and area information are stated at the top of the website and it is the same pattern always.
                 # Therefore they can be detected within their class and indexes.
-                locality = soup_of_each_property.select(".classified__information--address-row")[1].text.replace(" ",
-                                                                                                                 "").replace(
-                    '\n', '')[:5]
+                locality = soup_of_each_property.select(".classified__information--address-row")[1].text.replace(" ","").replace('\n', '')[:5]
                 dict_of_attributes['location'] = locality
 
-                price = soup_of_each_property.find_all("p", attrs={"class": "classified__price"})[0].text.split(" ")[
-                    0].replace('€', '')
+                price = soup_of_each_property.find_all("p", attrs={"class": "classified__price"})[0].text.split(" ")[0].replace('€', '')
                 dict_of_attributes['price'] = price
 
-                number_of_rooms = \
-                soup_of_each_property.find_all('span', attrs={"class": "overview__text"})[0].text.replace(" ", "")[1]
+                number_of_rooms = soup_of_each_property.find_all('span', attrs={"class": "overview__text"})[0].text.replace(" ", "")[1]
                 dict_of_attributes['number_of_rooms'] = number_of_rooms
 
-                area = soup_of_each_property.find_all('span', attrs={"class": "overview__text"})[2].text.replace(" ",
-                                                                                                                 "").replace(
-                    "\n", "")
-                area = ''.join(filter(str.isdigit, area))[
-                       :-1]  # to retrieve only the digit part without the square(²) sign.
+                area = soup_of_each_property.find_all('span', attrs={"class": "overview__text"})[2].text.replace(" ","").replace("\n", "")
+                area = ''.join(filter(str.isdigit, area))[:-1]  # to retrieve only the digit part without the square(²) sign.
                 dict_of_attributes['area'] = area
 
                 # However, some interior and exterior information are optional for each property (e.g. terrace, swimming pool) so we need to create a for loop that will check
@@ -100,15 +93,12 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
 
                         # only retrieve the numerical information, remove the rest.
                         if attribute_name == 'Garden surface':
-                            attribute_value = attribute_value.replace("\n", "").replace(" ", "").replace(
-                                "m²squaremeters", '')
+                            attribute_value = attribute_value.replace("\n", "").replace(" ", "").replace("m²squaremeters", '')
 
                         if attribute_name == 'Terrace surface':
-                            attribute_value = attribute_value.replace("\n", "").replace(" ", "").replace(
-                                "m²squaremeters", '')
+                            attribute_value = attribute_value.replace("\n", "").replace(" ", "").replace("m²squaremeters", '')
                         if attribute_name == 'Surface of the plot':
-                            attribute_value = attribute_value.replace("\n", "").replace(" ", "").replace(
-                                "m²squaremeters", '')
+                            attribute_value = attribute_value.replace("\n", "").replace(" ", "").replace("m²squaremeters", '')
 
                         # assign each property attribute to their value
                         dict_of_attributes[attribute_name] = attribute_value

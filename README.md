@@ -8,7 +8,8 @@ table of values. If the information has not been entered on the website, you als
 of that.
 
 <h2>Installation</h2>
-
+One simply has to run the program through a Python-supporting application, like PyCharm or Visual
+Studio Code.
 
 <h2>Usage</h2>
 
@@ -17,7 +18,6 @@ of that.
 
 
 <h2>Contributors</h2>
-
 Ceren Morey  
 Kadri Salija  
 Pauwel De Wilde

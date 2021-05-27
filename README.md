@@ -21,5 +21,5 @@ Studio Code.
 Ceren Morey<br />
 Kadri Salija<br />
 Pauwel De Wilde<br />
-
+<br />
 (Juniors at BeCode)

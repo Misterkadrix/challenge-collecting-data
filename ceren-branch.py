@@ -51,9 +51,11 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
             if 'real estate project' not in is_real_estates:
 
                 # scrapping the property type
-                property_type = card.find_all('a', attrs={"class": "card__title-link"})[0].text.strip().replace('\n',
-                                                                                                                '')
+                property_type = card.find_all('a', attrs={"class": "card__title-link"})[0].text.strip().replace('\n','')
                 dict_of_attributes['property_type'] = property_type
+
+                locality = card.find_all('p', attrs={"class": "card__information card--results__information--locality card__information--locality"})[0].text.strip()[:5]
+                dict_of_attributes['location'] = locality
 
                 # retrieve the links of each property so the beautifulsoup can be created
                 property_link = card.find('a', attrs={"class": "card__title-link"}).get('href')
@@ -65,8 +67,6 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
 
                 # for each property, location, price, number of rooms, and area information are stated at the top of the website and it is the same pattern always.
                 # Therefore they can be detected within their class and indexes.
-                locality = soup_of_each_property.select(".classified__information--address-row")[1].text.replace(" ","").replace('\n', '')[:5]
-                dict_of_attributes['location'] = locality
 
                 price = soup_of_each_property.find_all("p", attrs={"class": "classified__price"})[0].text.split(" ")[0].replace('€', '')
                 dict_of_attributes['price'] = price

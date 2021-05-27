@@ -17,7 +17,7 @@ of that.
 
 
 <h2>Contributors</h2>
-Ceren Morey
-Kadri Salija
-Pauwel De Wilde
+Ceren Morey</n>
+Kadri Salija</n>
+Pauwel De Wilde</n>
 (Juniors at BeCode)

@@ -56,4 +56,4 @@ for page_number in range(1, total_pages + 1):  # creating a loop that will repla
             price = soup_of_each_property.find_all("p", attrs={"class": "classified__price"})[0].text.split(" ")[0]
             print(price)
 
-
+            

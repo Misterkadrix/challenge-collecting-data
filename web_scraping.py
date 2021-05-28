@@ -147,7 +147,7 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
     print(f"ended after: {card_count} card listed")
 
 
-    # data_frame
+    # data_frame to csv
     data_frame.to_csv("E:\Becode\Python_EXo\Project\Scrapping\challenge-collecting-data\scrapping_project.csv")
 
 

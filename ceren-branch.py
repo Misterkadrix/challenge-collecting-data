@@ -6,7 +6,13 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 driver = webdriver.Safari()
+<<<<<<< Updated upstream
 website_url =  'https://www.immoweb.be/en/search/house-and-apartment/for-sale?countries=BE&isALifeAnnuitySale=false&page=1&orderBy=relevance'
+=======
+driver.execute_cpd_cmd('Network.setUserAgentOverride', {'user agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Safari/605.1.15'}
+website_url = 'https://www.immoweb.be/en/search/house-and-apartment/for-sale?countries=BE&isALifeAnnuitySale=false' \
+              '&page=1&orderBy=relevance '
+>>>>>>> Stashed changes
 driver.get(website_url)
 
 html = driver.page_source
@@ -57,10 +63,21 @@ for page_number in range(1, total_pages + 1):  # creating a loop that will repla
             is_real_estates = card.find('a', attrs={"class": "card__title-link"}).get('aria-label')
             if 'real estate project' not in is_real_estates:
 
+<<<<<<< Updated upstream
                 # scrapping the property type
                 property_type = card.find_all('a', attrs={"class": "card__title-link"})[0].text.strip().replace('\n',
                                                                                                                 '')
                 dict_of_attributes['property_type'] = property_type
+=======
+            if 'real estate project' in is_real_estates:
+                list_of_real_estate = card.find_all('a', attrs={"class": "classified__list-item-link"})
+                for real_estate in list_of_real_estate:
+                    final_dict = scrap_from_page(real_estate.get('href'), list_of_attributes_to_retrieve)
+                    data_frame = data_frame.append(final_dict, ignore_index=True)
+                    card_count += 1
+
+            else:
+>>>>>>> Stashed changes
 
                 # retrieve the links of each property so the beautifulsoup can be created
                 property_link = card.find('a', attrs={"class": "card__title-link"}).get('href')
@@ -159,4 +176,9 @@ data_frame
             price = soup_of_each_property.find_all("p", attrs={"class": "classified__price"})[0].text.split(" ")[0]
             print(price)
 
+<<<<<<< Updated upstream
             
+=======
+    # data_frame
+    data_frame.to_csv("/Users/Pauwel/Desktop/BeCode/becode_projects/scrapping_project.csv")
+>>>>>>> Stashed changes

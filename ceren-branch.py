@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 driver = webdriver.Safari()
-website_url = 'https://www.immoweb.be/en/search/house-and-apartment/for-sale?countries=BE&isALifeAnnuitySale=false&page=1&orderBy=relevance'
+website_url = 'https://www.immoweb.be/en/search/house-and-apartment/for-sale?countries=BE&isALifeAnnuitySale=false' \
+              '&page=1&orderBy=relevance '
 driver.get(website_url)
 
 html = driver.page_source

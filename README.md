@@ -1,4 +1,4 @@
-# Collecting data
+# Web Scraping Group Project
 Type of Challenge: Consolidation
 
 <h2>Description</h2>

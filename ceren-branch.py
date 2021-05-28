@@ -17,7 +17,7 @@ soup = BeautifulSoup(html)
 
 
 def scrap_from_page(url: str, list_to_retrieve: list):
-    '''This function will return the dict with all scrapped information'''
+    """This function will return the dict with all scrapped information"""
 
     # dictionary that will store the scrapped information.
     dict_of_attributes = {}
@@ -90,7 +90,7 @@ def scrap_from_page(url: str, list_to_retrieve: list):
     return final_dict
 
 
-#START OF THE PROGRAM
+# START OF THE PROGRAM
 
 # Define what we need to scrap and add them as columns to the data frame
 list_of_attributes_to_retrieve = ['Bedrooms', 'property_type', 'location', 'price', 'Living area', 'Kitchen type',
@@ -104,7 +104,7 @@ data_frame = pd.DataFrame(
 # defining where the page number is indicated within the website which will help to create the loop for going through each page for scrapping.
 total_pages = soup.find_all('span', attrs={"class": "button__label"})[6].text
 
-card_count = 0 #this is to track how many property have been scrapped
+card_count = 0  # this is to track how many property have been scrapped
 
 for page_number in range(1, int(total_pages) + 1):  # creating a loop that will replace the page number
 
@@ -118,7 +118,7 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
     html = driver.page_source
     soup = BeautifulSoup(html)
 
-    # finding each listed houses' information to scrap further the property type (house,apartement,mansion, etc.)
+    # finding each listed houses' information to scrap further the property type (house,apartment,mansion, etc.)
     house_containers = soup.find_all('li', attrs={"class": "search-results__item"})
 
     # the loop that will go through each listed house and do the scrapping.
@@ -147,9 +147,9 @@ for page_number in range(1, int(total_pages) + 1):  # creating a loop that will 
                 card_count += 1
 
     print(f"ended after: {card_count} card listed")
-    #         #rename the column names to make them easier/cleaner to read.
-    #         data_frame.rename({'property_type': 'Property Type', 'location': 'Location', 'price': 'Price', 'Bedrooms': 'Number of bedrooms',
-    #                   'area': 'Area'}, axis=1, inplace = True)
+    # #rename the column names to make them easier/cleaner to read. data_frame.rename({'property_type': 'Property
+    # Type', 'location': 'Location', 'price': 'Price', 'Bedrooms': 'Number of bedrooms',
+    # 'area': 'Area'}, axis=1, inplace = True)
 
     #         #change yes/no answers to binary values as requested for the project.
     #         data_frame['Swimming pool'] = data_frame['Swimming pool'].replace(['No'],'0')  #if it's no assign 0.

@@ -17,8 +17,6 @@ The program wil scrape the Immoweb website, collect the data and put them in a d
 Pandas). The first 10,000 results will be analysed, which will take some minutes. After that, the dataframe 
 is automatically converted to a .csv file, which you can open with Excel or any similar application.
 
-<h2>Visuals</h2>
-
 
 <h2>Contributors</h2>
 Ceren Morey<br/>
